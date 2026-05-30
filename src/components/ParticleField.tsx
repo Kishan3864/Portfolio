@@ -17,12 +17,17 @@ export default function ParticleField() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    // Skip the whole effect for users who prefer reduced motion.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationId: number;
-    let mouseX = 0;
-    let mouseY = 0;
+    let animationId = 0;
+    let running = true;
+    let mouseX = -9999;
+    let mouseY = -9999;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -31,12 +36,16 @@ export default function ParticleField() {
     resize();
     window.addEventListener("resize", resize);
 
-    const colors = ["#6C63FF", "#00D4AA", "#FF6B6B", "#4ECDC4"];
-    const particles: Particle[] = Array.from({ length: 80 }, () => ({
+    // Scale particle count to the screen so phones/laptops do far less work.
+    const area = window.innerWidth * window.innerHeight;
+    const count = Math.min(36, Math.max(16, Math.round(area / 36000)));
+
+    const colors = ["#4F46E5", "#0D9488", "#DB2777", "#7C3AED"];
+    const particles: Particle[] = Array.from({ length: count }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
       size: Math.random() * 2 + 1,
       opacity: Math.random() * 0.5 + 0.1,
       color: colors[Math.floor(Math.random() * colors.length)],
@@ -46,24 +55,29 @@ export default function ParticleField() {
       mouseX = e.clientX;
       mouseY = e.clientY;
     };
-    window.addEventListener("mousemove", handleMouse);
+    window.addEventListener("mousemove", handleMouse, { passive: true });
+
+    // Compare squared distances to avoid Math.sqrt in the hot loop.
+    const LINK = 120;
+    const LINK_SQ = LINK * LINK;
+    const PULL = 150;
+    const PULL_SQ = PULL * PULL;
 
     const animate = () => {
+      if (!running) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particles.forEach((p, i) => {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
         const dx = mouseX - p.x;
         const dy = mouseY - p.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 150) {
-          p.vx -= dx * 0.00005;
-          p.vy -= dy * 0.00005;
+        if (dx * dx + dy * dy < PULL_SQ) {
+          p.vx -= dx * 0.00004;
+          p.vy -= dy * 0.00004;
         }
 
         p.x += p.vx;
         p.y += p.vy;
-
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
@@ -73,29 +87,47 @@ export default function ParticleField() {
         ctx.globalAlpha = p.opacity;
         ctx.fill();
 
-        particles.slice(i + 1).forEach((p2) => {
-          const d = Math.sqrt((p.x - p2.x) ** 2 + (p.y - p2.y) ** 2);
-          if (d < 120) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const ddx = p.x - p2.x;
+          const ddy = p.y - p2.y;
+          const dSq = ddx * ddx + ddy * ddy;
+          if (dSq < LINK_SQ) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = p.color;
-            ctx.globalAlpha = (1 - d / 120) * 0.15;
+            // A touch stronger so the web stays visible on the light background.
+            ctx.globalAlpha = (1 - Math.sqrt(dSq) / LINK) * 0.22;
             ctx.stroke();
           }
-        });
-      });
+        }
+      }
 
       ctx.globalAlpha = 1;
       animationId = requestAnimationFrame(animate);
     };
 
+    // Pause when the tab/window isn't visible so it never burns CPU in the background.
+    const onVisibility = () => {
+      if (document.hidden) {
+        running = false;
+        cancelAnimationFrame(animationId);
+      } else if (!running) {
+        running = true;
+        animate();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
     animate();
 
     return () => {
+      running = false;
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouse);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 
@@ -103,7 +135,7 @@ export default function ParticleField() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.5 }}
     />
   );
 }

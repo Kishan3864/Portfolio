@@ -25,8 +25,8 @@ const projects = [
       "User Dashboard",
       "API Integration",
     ],
-    color: "#6C63FF",
-    gradient: "from-[#6C63FF] to-[#4834d4]",
+    color: "#4F46E5",
+    gradient: "from-[#4F46E5] to-[#4338CA]",
     icon: <FileText size={32} />,
     badge: "Live Product",
   },
@@ -43,8 +43,8 @@ const projects = [
       "Smart Dashboards",
       "Market Insights",
     ],
-    color: "#00D4AA",
-    gradient: "from-[#00D4AA] to-[#00b894]",
+    color: "#0D9488",
+    gradient: "from-[#0D9488] to-[#0F766E]",
     icon: <BarChart3 size={32} />,
     badge: "Live Product",
   },
@@ -74,8 +74,8 @@ export default function ProjectsSection() {
 
   return (
     <section id="projects" className="relative py-32 overflow-hidden">
-      <div className="floating-orb w-80 h-80 bg-[#00D4AA] -left-20 top-1/4" />
-      <div className="floating-orb w-60 h-60 bg-[#6C63FF] -right-20 bottom-1/3" />
+      <div className="floating-orb w-80 h-80 bg-[#0D9488] -left-20 top-1/4" />
+      <div className="floating-orb w-60 h-60 bg-[#4F46E5] -right-20 bottom-1/3" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         <motion.div
@@ -84,13 +84,13 @@ export default function ProjectsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-[#6C63FF] mb-4 block">
+          <span className="text-sm tracking-[0.3em] uppercase text-[#4F46E5] mb-4 block">
             What I&apos;ve Built
           </span>
           <h2 className="text-4xl md:text-6xl font-bold">
             My <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-gray-400 mt-4 max-w-lg mx-auto">
+          <p className="text-slate-600 mt-4 max-w-lg mx-auto">
             Products I&apos;ve built from the ground up — live, running, and serving real users
           </p>
           <div className="glow-line max-w-xs mx-auto mt-6" />
@@ -116,7 +116,7 @@ export default function ProjectsSection() {
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       className="relative z-10 text-white"
                     >
-                      <div className="w-24 h-24 rounded-2xl bg-white/10 backdrop-blur-xl flex items-center justify-center mb-4 mx-auto">
+                      <div className="w-24 h-24 rounded-2xl bg-white/20 flex items-center justify-center mb-4 mx-auto">
                         {project.icon}
                       </div>
                       <div className="text-center">
@@ -148,7 +148,7 @@ export default function ProjectsSection() {
                       <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                     </div>
 
-                    <p className="text-gray-400 leading-relaxed mb-6">
+                    <p className="text-slate-600 leading-relaxed mb-6">
                       {project.description}
                     </p>
 
@@ -156,7 +156,7 @@ export default function ProjectsSection() {
                       {project.features.map((f) => (
                         <span
                           key={f}
-                          className="px-3 py-1.5 rounded-full text-xs glass text-gray-300"
+                          className="px-3 py-1.5 rounded-full text-xs glass text-slate-700"
                         >
                           {f}
                         </span>
@@ -194,7 +194,7 @@ export default function ProjectsSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mt-24"
         >
-          <h3 className="text-2xl font-bold text-white text-center mb-12">
+          <h3 className="text-2xl font-bold text-slate-900 text-center mb-12">
             Other Professional Work
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
@@ -207,11 +207,11 @@ export default function ProjectsSection() {
                 whileHover={{ y: -8 }}
                 className="glass rounded-2xl p-6 card-shine group cursor-default"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#6C63FF]/20 flex items-center justify-center text-[#6C63FF] mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-lg bg-[#4F46E5]/20 flex items-center justify-center text-[#4F46E5] mb-4 group-hover:scale-110 transition-transform">
                   {work.icon}
                 </div>
-                <h4 className="text-white font-semibold mb-2">{work.title}</h4>
-                <p className="text-gray-400 text-sm">{work.desc}</p>
+                <h4 className="text-slate-900 font-semibold mb-2">{work.title}</h4>
+                <p className="text-slate-600 text-sm">{work.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -225,18 +225,18 @@ export default function ProjectsSection() {
           className="mt-20 text-center"
         >
           <div className="glass rounded-2xl p-10 max-w-2xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
               Have a Project in Mind?
             </h3>
-            <p className="text-gray-400 mb-8">
+            <p className="text-slate-600 mb-8">
               I&apos;m ready to bring your ideas to life. Let&apos;s build something
               incredible together.
             </p>
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(108, 99, 255, 0.4)" }}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(79, 70, 229, 0.4)" }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#6C63FF] to-[#00D4AA] text-white font-semibold text-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#4F46E5] to-[#0D9488] text-white font-semibold text-lg"
             >
               Let&apos;s Talk
               <ArrowUpRight size={20} />

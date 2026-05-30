@@ -1,6 +1,5 @@
 "use client";
 import dynamic from "next/dynamic";
-import ParticleField from "@/components/ParticleField";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -13,6 +12,10 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), {
+  ssr: false,
+});
+// Lazy-load the background canvas so it never blocks first paint.
+const ParticleField = dynamic(() => import("@/components/ParticleField"), {
   ssr: false,
 });
 

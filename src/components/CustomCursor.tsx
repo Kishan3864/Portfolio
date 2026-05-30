@@ -1,46 +1,46 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [visible, setVisible] = useState(false);
+  const [enabled, setEnabled] = useState(false);
+
+  // Motion values update WITHOUT triggering React re-renders.
+  const x = useMotionValue(-100);
+  const y = useMotionValue(-100);
+  const dotX = useSpring(x, { damping: 30, stiffness: 500, mass: 0.3 });
+  const dotY = useSpring(y, { damping: 30, stiffness: 500, mass: 0.3 });
+  const ringX = useSpring(x, { damping: 20, stiffness: 200, mass: 0.5 });
+  const ringY = useSpring(y, { damping: 20, stiffness: 200, mass: 0.5 });
 
   useEffect(() => {
-    const isTouchDevice = "ontouchstart" in window;
-    if (isTouchDevice) return;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (isTouch || reduceMotion) return;
+
+    setEnabled(true);
 
     const move = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY });
-      setVisible(true);
+      x.set(e.clientX);
+      y.set(e.clientY);
     };
-    const leave = () => setVisible(false);
-    const enter = () => setVisible(true);
+    window.addEventListener("mousemove", move, { passive: true });
+    return () => window.removeEventListener("mousemove", move);
+  }, [x, y]);
 
-    window.addEventListener("mousemove", move);
-    document.addEventListener("mouseleave", leave);
-    document.addEventListener("mouseenter", enter);
-
-    return () => {
-      window.removeEventListener("mousemove", move);
-      document.removeEventListener("mouseleave", leave);
-      document.removeEventListener("mouseenter", enter);
-    };
-  }, []);
-
-  if (!visible) return null;
+  if (!enabled) return null;
 
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 rounded-full bg-[#6C63FF] pointer-events-none z-[100] mix-blend-difference"
-        animate={{ x: pos.x - 8, y: pos.y - 8 }}
-        transition={{ type: "spring", damping: 30, stiffness: 500 }}
+        className="fixed top-0 left-0 w-3 h-3 -ml-1.5 -mt-1.5 rounded-full bg-[#4F46E5] pointer-events-none z-[100]"
+        style={{ x: dotX, y: dotY }}
       />
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-[#6C63FF]/50 pointer-events-none z-[100] mix-blend-difference"
-        animate={{ x: pos.x - 20, y: pos.y - 20 }}
-        transition={{ type: "spring", damping: 20, stiffness: 200 }}
+        className="fixed top-0 left-0 w-9 h-9 -ml-[18px] -mt-[18px] rounded-full border border-[#4F46E5]/50 pointer-events-none z-[100]"
+        style={{ x: ringX, y: ringY }}
       />
     </>
   );

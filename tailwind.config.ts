@@ -9,14 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#6C63FF",
-        secondary: "#00D4AA",
-        accent: "#FF6B6B",
+        primary: "#4F46E5",
+        secondary: "#0D9488",
+        accent: "#DB2777",
         dark: {
-          900: "#0A0A0F",
-          800: "#12121A",
-          700: "#1A1A2E",
-          600: "#252540",
+          900: "#F4F6FB",
+          800: "#EAEEF6",
+          700: "#FFFFFF",
+          600: "#E2E8F0",
         },
       },
       fontFamily: {
@@ -41,8 +41,8 @@ const config: Config = {
           "50%": { transform: "translateY(-20px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(108, 99, 255, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(108, 99, 255, 0.6)" },
+          "0%, 100%": { boxShadow: "0 0 20px rgba(79, 70, 229, 0.3)" },
+          "50%": { boxShadow: "0 0 40px rgba(79, 70, 229, 0.6)" },
         },
         "gradient-shift": {
           "0%": { backgroundPosition: "0% 50%" },
