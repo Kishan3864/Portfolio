@@ -27,12 +27,34 @@ export const metadata: Metadata = {
     "ASP.NET",
     "Portfolio",
   ],
-  authors: [{ name: "Kishan Patel" }],
+  // Author link points to a real, verifiable LinkedIn profile.
+  authors: [
+    {
+      name: "Kishan Patel",
+      url: "https://www.linkedin.com/in/kishanwebdeveloper",
+    },
+  ],
+  creator: "Kishan Patel",
+  publisher: "Kishan Patel",
+  category: "technology",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
   openGraph: {
     title: "Kishan Patel | .NET Developer & Product Builder",
     description:
       "6+ years experienced .NET Developer, Full Stack Engineer, and creator of FlexYPDF & MunafaLab.",
+    siteName: "Kishan Patel — Portfolio",
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kishan Patel | .NET Developer & Product Builder",
+    description:
+      "6+ years experienced .NET Developer, Full Stack Engineer, and creator of FlexYPDF & MunafaLab.",
   },
 };
 

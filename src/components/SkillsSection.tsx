@@ -16,7 +16,7 @@ const skillCategories = [
   {
     name: "Backend",
     icon: <Server size={20} />,
-    color: "#6C63FF",
+    color: "#4F46E5",
     skills: [
       { name: "C# / .NET", level: 95 },
       { name: "ASP.NET Core", level: 92 },
@@ -29,7 +29,7 @@ const skillCategories = [
   {
     name: "Frontend",
     icon: <Globe size={20} />,
-    color: "#00D4AA",
+    color: "#0D9488",
     skills: [
       { name: "HTML / CSS / JS", level: 90 },
       { name: "React.js", level: 80 },
@@ -42,7 +42,7 @@ const skillCategories = [
   {
     name: "Database",
     icon: <Database size={20} />,
-    color: "#FF6B6B",
+    color: "#DB2777",
     skills: [
       { name: "SQL Server", level: 92 },
       { name: "PostgreSQL", level: 78 },
@@ -55,7 +55,7 @@ const skillCategories = [
   {
     name: "Cloud & DevOps",
     icon: <Cloud size={20} />,
-    color: "#4ECDC4",
+    color: "#7C3AED",
     skills: [
       { name: "Azure", level: 80 },
       { name: "Docker", level: 75 },
@@ -94,8 +94,8 @@ function SkillBar({
   return (
     <div className="mb-4">
       <div className="flex justify-between mb-1.5">
-        <span className="text-sm text-gray-300">{name}</span>
-        <span className="text-xs text-gray-500">{level}%</span>
+        <span className="text-sm text-slate-700">{name}</span>
+        <span className="text-xs text-slate-500">{level}%</span>
       </div>
       <div className="h-2 rounded-full bg-dark-600 overflow-hidden">
         <motion.div
@@ -120,7 +120,7 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" className="relative py-32 overflow-hidden">
-      <div className="floating-orb w-72 h-72 bg-[#6C63FF] -right-20 top-20" />
+      <div className="floating-orb w-72 h-72 bg-[#4F46E5] -right-20 top-20" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         <motion.div
@@ -129,13 +129,13 @@ export default function SkillsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-[#FF6B6B] mb-4 block">
+          <span className="text-sm tracking-[0.3em] uppercase text-[#DB2777] mb-4 block">
             What I Bring to the Table
           </span>
           <h2 className="text-4xl md:text-6xl font-bold">
             My <span className="gradient-text">Skills</span> & Expertise
           </h2>
-          <p className="text-gray-400 mt-4 max-w-lg mx-auto">
+          <p className="text-slate-600 mt-4 max-w-lg mx-auto">
             Over 6 years of hands-on experience across the full technology stack
           </p>
           <div className="glow-line max-w-xs mx-auto mt-6" />
@@ -157,7 +157,7 @@ export default function SkillsSection() {
               className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === i
                   ? "text-white"
-                  : "glass text-gray-400 hover:text-white"
+                  : "glass text-slate-600 hover:text-slate-900"
               }`}
               style={
                 activeTab === i
@@ -204,10 +204,10 @@ export default function SkillsSection() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           {[
-            { value: "C#", label: "Primary Language", color: "#6C63FF" },
-            { value: ".NET", label: "Core Framework", color: "#00D4AA" },
-            { value: "Azure", label: "Cloud Platform", color: "#4ECDC4" },
-            { value: "React", label: "Frontend Choice", color: "#FF6B6B" },
+            { value: "C#", label: "Primary Language", color: "#4F46E5" },
+            { value: ".NET", label: "Core Framework", color: "#0D9488" },
+            { value: "Azure", label: "Cloud Platform", color: "#7C3AED" },
+            { value: "React", label: "Frontend Choice", color: "#DB2777" },
           ].map((item) => (
             <motion.div
               key={item.label}
@@ -220,7 +220,7 @@ export default function SkillsSection() {
               >
                 {item.value}
               </div>
-              <div className="text-xs text-gray-500">{item.label}</div>
+              <div className="text-xs text-slate-500">{item.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -232,7 +232,7 @@ export default function SkillsSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mt-16"
         >
-          <h3 className="text-center text-xl font-bold text-white mb-8">
+          <h3 className="text-center text-xl font-bold text-slate-900 mb-8">
             Tools & Technologies I Use Daily
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
@@ -244,9 +244,9 @@ export default function SkillsSection() {
                 transition={{ duration: 0.4, delay: 0.9 + i * 0.06 }}
                 whileHover={{
                   scale: 1.1,
-                  boxShadow: "0 0 15px rgba(108, 99, 255, 0.3)",
+                  boxShadow: "0 0 15px rgba(79, 70, 229, 0.3)",
                 }}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-full glass glass-hover text-gray-300 text-sm cursor-default"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-full glass glass-hover text-slate-700 text-sm cursor-default"
               >
                 {tool.icon}
                 {tool.name}

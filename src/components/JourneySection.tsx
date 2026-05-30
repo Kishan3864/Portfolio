@@ -17,7 +17,7 @@ const timelineData = [
     description:
       "My journey began with a deep curiosity about technology and how software could shape the world. I immersed myself in learning programming fundamentals and explored different languages.",
     icon: <Star size={20} />,
-    color: "#FF6B6B",
+    color: "#DB2777",
     side: "left" as const,
   },
   {
@@ -26,7 +26,7 @@ const timelineData = [
     description:
       "Pursued formal education in Computer Science, mastering data structures, algorithms, and software engineering principles. This academic foundation became the bedrock of my career.",
     icon: <GraduationCap size={20} />,
-    color: "#6C63FF",
+    color: "#4F46E5",
     side: "right" as const,
   },
   {
@@ -35,7 +35,7 @@ const timelineData = [
     description:
       "Landed my first role as a .NET Developer. Dove deep into the Microsoft ecosystem — C#, ASP.NET, SQL Server. Started building enterprise-grade web applications and APIs from day one.",
     icon: <Code2 size={20} />,
-    color: "#00D4AA",
+    color: "#0D9488",
     side: "left" as const,
   },
   {
@@ -44,7 +44,7 @@ const timelineData = [
     description:
       "Over the years, I grew from a junior developer to a senior-level professional. Led projects, mentored team members, and mastered full-stack development with .NET Core, Azure, and modern frontend frameworks.",
     icon: <TrendingUp size={20} />,
-    color: "#4ECDC4",
+    color: "#7C3AED",
     side: "right" as const,
   },
   {
@@ -53,7 +53,7 @@ const timelineData = [
     description:
       "Currently working as a seasoned .NET Developer at the same company that gave me my start. I've built everything from microservices to complex enterprise solutions. My expertise spans the entire SDLC.",
     icon: <Briefcase size={20} />,
-    color: "#6C63FF",
+    color: "#4F46E5",
     side: "left" as const,
   },
   {
@@ -62,7 +62,7 @@ const timelineData = [
     description:
       "Launched FlexYPDF (flexypdf.com) — a powerful PDF toolkit, and MunafaLab (munafalab.com) — a smart business analytics platform. Both are live products generating income and serving real users.",
     icon: <Rocket size={20} />,
-    color: "#FF6B6B",
+    color: "#DB2777",
     side: "right" as const,
   },
   {
@@ -71,7 +71,7 @@ const timelineData = [
     description:
       "Expanding into freelancing while maintaining my full-time role and products. Ready to bring 6+ years of professional experience to help businesses worldwide build exceptional software.",
     icon: <Star size={20} />,
-    color: "#00D4AA",
+    color: "#0D9488",
     side: "left" as const,
   },
 ];
@@ -100,7 +100,7 @@ function TimelineItem({
         transition={{ duration: 0.7, delay: 0.2 }}
         className="w-full md:w-5/12"
       >
-        <div className="glass rounded-2xl p-6 card-shine group hover:border-[#6C63FF]/30 transition-all duration-300">
+        <div className="glass rounded-2xl p-6 card-shine group hover:border-[#4F46E5]/30 transition-all duration-300">
           <span
             className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3"
             style={{
@@ -110,10 +110,10 @@ function TimelineItem({
           >
             {item.year}
           </span>
-          <h3 className="text-xl font-bold text-white mb-3 group-hover:gradient-text transition-colors">
+          <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:gradient-text transition-colors">
             {item.title}
           </h3>
-          <p className="text-gray-400 leading-relaxed">{item.description}</p>
+          <p className="text-slate-600 leading-relaxed">{item.description}</p>
         </div>
       </motion.div>
 
@@ -144,8 +144,8 @@ export default function JourneySection() {
 
   return (
     <section id="journey" className="relative py-32 overflow-hidden">
-      <div className="floating-orb w-80 h-80 bg-[#00D4AA] -left-40 top-1/3" />
-      <div className="floating-orb w-60 h-60 bg-[#FF6B6B] -right-20 bottom-1/4" />
+      <div className="floating-orb w-80 h-80 bg-[#0D9488] -left-40 top-1/3" />
+      <div className="floating-orb w-60 h-60 bg-[#DB2777] -right-20 bottom-1/4" />
 
       <div className="max-w-6xl mx-auto px-6" ref={ref}>
         <motion.div
@@ -154,13 +154,13 @@ export default function JourneySection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-[#00D4AA] mb-4 block">
+          <span className="text-sm tracking-[0.3em] uppercase text-[#0D9488] mb-4 block">
             My Life Story
           </span>
           <h2 className="text-4xl md:text-6xl font-bold">
             The <span className="gradient-text">Journey</span>
           </h2>
-          <p className="text-gray-400 mt-4 max-w-lg mx-auto">
+          <p className="text-slate-600 mt-4 max-w-lg mx-auto">
             From a curious student to a seasoned developer and entrepreneur —
             here&apos;s how my story unfolded.
           </p>
@@ -170,7 +170,7 @@ export default function JourneySection() {
         <div className="relative">
           {/* Timeline center line */}
           <div className="hidden md:block timeline-line" />
-          <div className="md:hidden absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#6C63FF] to-transparent" />
+          <div className="md:hidden absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#4F46E5] to-transparent" />
 
           <div className="space-y-16 md:space-y-24">
             {timelineData.map((item, i) => (
