@@ -1,6 +1,6 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import {
   Mail,
   Send,
@@ -12,6 +12,9 @@ import {
   FileText,
   ShieldCheck,
   Clock,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/BrandIcons";
 import { profile } from "@/lib/profile";
@@ -60,6 +63,39 @@ export default function ContactSection() {
     email: "",
     message: "",
   });
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+  const [feedback, setFeedback] = useState("");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+    setFeedback("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        setStatus("success");
+        setFeedback(
+          "Thanks! Your message has been received — I'll get back to you within 24 hours."
+        );
+        setFormState({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
+        setFeedback(data.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setFeedback(
+        "Network error. Please try again, or email me directly."
+      );
+    }
+  };
 
   return (
     <section id="contact" className="relative py-32 overflow-hidden">
@@ -213,14 +249,7 @@ export default function ContactSection() {
                 </h3>
               </div>
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const mailtoLink = `mailto:${profile.email}?subject=Portfolio Inquiry from ${formState.name}&body=${encodeURIComponent(formState.message)}`;
-                  window.location.href = mailtoLink;
-                }}
-                className="space-y-6"
-              >
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="text-sm text-slate-600 mb-2 block">
                     Your Name
@@ -283,16 +312,46 @@ export default function ContactSection() {
 
                 <motion.button
                   type="submit"
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 0 30px rgba(79, 70, 229, 0.4)",
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#4F46E5] to-[#0D9488] text-white font-semibold text-lg flex items-center justify-center gap-2"
+                  disabled={status === "sending"}
+                  whileHover={
+                    status === "sending"
+                      ? undefined
+                      : { scale: 1.02, boxShadow: "0 0 30px rgba(79, 70, 229, 0.4)" }
+                  }
+                  whileTap={status === "sending" ? undefined : { scale: 0.98 }}
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#4F46E5] to-[#0D9488] text-white font-semibold text-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Send Message
-                  <Send size={18} />
+                  {status === "sending" ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send size={18} />
+                    </>
+                  )}
                 </motion.button>
+
+                {/* Submission feedback */}
+                {feedback && (
+                  <div
+                    role="status"
+                    className={`flex items-start gap-2 text-sm rounded-xl px-4 py-3 ${
+                      status === "success"
+                        ? "bg-[#0D9488]/10 text-[#0D7a70]"
+                        : "bg-[#DB2777]/10 text-[#be1f63]"
+                    }`}
+                  >
+                    {status === "success" ? (
+                      <CheckCircle2 size={16} className="mt-0.5 shrink-0" />
+                    ) : (
+                      <AlertCircle size={16} className="mt-0.5 shrink-0" />
+                    )}
+                    <span>{feedback}</span>
+                  </div>
+                )}
 
                 {/* Trust reassurance */}
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 pt-2 text-xs text-slate-500">
