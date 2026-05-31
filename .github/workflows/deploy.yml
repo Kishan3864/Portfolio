@@ -63,7 +63,9 @@ jobs:
           install -m 700 -d ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # Best-effort host-key prefetch; a transient miss must not fail the
+          # deploy (the ssh/rsync steps below use StrictHostKeyChecking=accept-new).
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
 
       - name: Upload build to VPS
         env:
@@ -77,7 +79,7 @@ jobs:
           # touched or removed.
           rsync -az --delete \
             --exclude='.env' --exclude='.env.*' \
-            -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT -o BatchMode=yes" \
+            -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT -o BatchMode=yes -o StrictHostKeyChecking=accept-new" \
             .next/standalone/ \
             "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
 
@@ -92,7 +94,7 @@ jobs:
         run: |
           # pm2 is installed via nvm, which a non-interactive SSH shell does not
           # load. Source nvm first so `pm2` is on PATH.
-          ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" -o BatchMode=yes "$SSH_USER@$SSH_HOST" \
+          ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" -o BatchMode=yes -o StrictHostKeyChecking=accept-new "$SSH_USER@$SSH_HOST" \
             "export NVM_DIR=\"\$HOME/.nvm\"; [ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\"; \
              cd '$DEPLOY_PATH' && \
              if pm2 describe '$PM2_NAME' > /dev/null 2>&1; then \
