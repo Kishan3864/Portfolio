@@ -7,8 +7,9 @@ const nextConfig: NextConfig = {
   // folder. The standalone server loads `.env*` from its own directory, so
   // `.env.local` (DATABASE_URL) must live alongside server.js on the server.
   output: "standalone",
-  // Keep `pg` external so it isn't bundled (it relies on Node's dynamic requires).
-  serverExternalPackages: ["pg"],
+  // Keep `pg` and `nodemailer` external so they aren't bundled (both rely on
+  // Node's dynamic requires) — they're traced into the standalone output instead.
+  serverExternalPackages: ["pg", "nodemailer"],
 };
 
 export default nextConfig;

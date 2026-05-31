@@ -6,7 +6,7 @@ export const profile = {
   name: "Kishan Patel",
   initials: "KP",
   role: ".NET Developer & Product Builder",
-  email: "kishan@devswifter.com",
+  email: "kishan3864@gmail.com",
   location: "India",
   experienceYears: "6+",
 

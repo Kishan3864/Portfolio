@@ -1,4 +1,5 @@
 import { pool } from "@/lib/db";
+import { sendThankYouEmail } from "@/lib/mail";
 
 // Runs on the Node.js runtime (pg needs Node APIs) and is never statically cached.
 export const runtime = "nodejs";
@@ -55,6 +56,12 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
+
+  // Send the automatic thank-you reply to the visitor. Best-effort: never block
+  // or fail the submission if email delivery has a problem (it's already saved).
+  sendThankYouEmail(email, name).catch((err) =>
+    console.error("[contact] thank-you email failed:", err)
+  );
 
   return Response.json({ ok: true });
 }
