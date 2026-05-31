@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Trash2, LogOut, X, Inbox, RefreshCw, Mail, Eye } from "lucide-react";
+import { profile } from "@/lib/profile";
 
 export type Contact = {
   id: number;
@@ -167,6 +168,20 @@ export default function AdminDashboard({ initial }: { initial: Contact[] }) {
   );
 }
 
+// Open Gmail's web compose from YOUR Gmail account (profile.email) instead of a
+// plain mailto: (which would use the device's default mail account). `authuser`
+// pins the sending account, so replies always come from kishan3864@gmail.com.
+function gmailReplyUrl(to: string): string {
+  const params = new URLSearchParams({
+    view: "cm",
+    fs: "1",
+    authuser: profile.email,
+    to,
+    su: "Re: your message",
+  });
+  return `https://mail.google.com/mail/?${params.toString()}`;
+}
+
 function formatDate(iso: string): string {
   try {
     return new Date(iso).toLocaleString(undefined, {
@@ -216,7 +231,9 @@ function ViewModal({
             <dt className="text-slate-500">Email</dt>
             <dd>
               <a
-                href={`mailto:${contact.email}`}
+                href={gmailReplyUrl(contact.email)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-slate-900 font-medium inline-flex items-center gap-1 hover:underline"
               >
                 <Mail size={14} /> {contact.email}
@@ -237,7 +254,9 @@ function ViewModal({
 
         <div className="flex justify-end gap-2 mt-6">
           <a
-            href={`mailto:${contact.email}?subject=Re: your message`}
+            href={gmailReplyUrl(contact.email)}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-gradient inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold"
           >
             <Mail size={15} />
