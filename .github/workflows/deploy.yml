@@ -90,8 +90,11 @@ jobs:
           PM2_NAME: ${{ secrets.PM2_NAME || 'kishanportfolio' }}
           APP_PORT: ${{ secrets.APP_PORT || '3003' }}
         run: |
+          # pm2 is installed via nvm, which a non-interactive SSH shell does not
+          # load. Source nvm first so `pm2` is on PATH.
           ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" -o BatchMode=yes "$SSH_USER@$SSH_HOST" \
-            "cd '$DEPLOY_PATH' && \
+            "export NVM_DIR=\"\$HOME/.nvm\"; [ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\"; \
+             cd '$DEPLOY_PATH' && \
              if pm2 describe '$PM2_NAME' > /dev/null 2>&1; then \
                pm2 reload '$PM2_NAME' --update-env; \
              else \
