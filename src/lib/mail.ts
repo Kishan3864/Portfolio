@@ -71,9 +71,6 @@ ${profile.name}
       <p style="margin: 24px 0 4px; line-height: 1.4; color: #0F172A; font-weight: 600;">${escapeHtml(profile.name)}</p>
       <p style="margin: 0; font-size: 13px; color: #64748B;">.NET Developer &amp; Product Builder</p>
     </div>
-    <div style="padding: 14px 24px; border-top: 1px solid #E2E8F0; font-size: 12px; color: #94A3B8;">
-      This is an automated confirmation from kishanportfolio.tech
-    </div>
   </div>`;
 
   await transporter.sendMail({
