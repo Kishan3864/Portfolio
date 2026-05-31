@@ -1,0 +1,104 @@
+name: Deploy to kishanportfolio.tech
+
+# Build the Next.js app on GitHub's runner, then ship the prebuilt
+# `.next/standalone` bundle to the Hostinger VPS over SSH+rsync and reload
+# PM2. The VPS installs nothing and builds nothing.
+#
+# Required repository secrets (Settings → Secrets and variables → Actions):
+#   SSH_HOST     VPS IP or hostname
+#   SSH_USER     SSH login user (e.g. flexyuser)
+#   SSH_KEY      private SSH deploy key (the matching .pub is in the VPS
+#                ~/.ssh/authorized_keys)
+#   DEPLOY_PATH  absolute dir on the VPS that holds the app + .env.local
+#                (e.g. /home/flexyuser/kishanportfolio)
+# Optional secrets (sensible defaults shown):
+#   SSH_PORT     SSH port              (default 22)
+#   PM2_NAME     PM2 process name      (default kishanportfolio)
+#   APP_PORT     port the app listens on (default 3003, used only on first start)
+
+on:
+  push:
+    branches: [main]
+
+# Never run two production deploys at once. If a push lands mid-deploy, queue
+# it — don't cancel a deploy that is already copying files to the server.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (standalone output)
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+
+      - name: Assemble standalone bundle
+        # server.js does not bundle static assets or /public by default —
+        # copy them in so the Node server serves them.
+        run: |
+          cp -r .next/static .next/standalone/.next/static
+          if [ -d public ]; then cp -r public .next/standalone/public; fi
+
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Upload build to VPS
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          # --delete keeps the dir in sync with the new build, but env files
+          # are excluded so the server's .env.local (DATABASE_URL) is never
+          # touched or removed.
+          rsync -az --delete \
+            --exclude='.env' --exclude='.env.*' \
+            -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT -o BatchMode=yes" \
+            .next/standalone/ \
+            "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
+
+      - name: Reload app (PM2)
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          PM2_NAME: ${{ secrets.PM2_NAME || 'kishanportfolio' }}
+          APP_PORT: ${{ secrets.APP_PORT || '3003' }}
+        run: |
+          ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" -o BatchMode=yes "$SSH_USER@$SSH_HOST" \
+            "cd '$DEPLOY_PATH' && \
+             if pm2 describe '$PM2_NAME' > /dev/null 2>&1; then \
+               pm2 reload '$PM2_NAME' --update-env; \
+             else \
+               PORT='$APP_PORT' pm2 start server.js --name '$PM2_NAME'; \
+             fi && \
+             pm2 save"
+
+      - name: Clean up
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
