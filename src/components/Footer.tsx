@@ -6,8 +6,8 @@ import { profile } from "@/lib/profile";
 
 const socials = [
   { name: "GitHub", url: profile.github, icon: <GithubIcon size={18} />, hover: "hover:text-slate-900" },
-  { name: "LinkedIn", url: profile.linkedin, icon: <LinkedinIcon size={18} />, hover: "hover:text-[#0A66C2]" },
-  { name: "Email", url: `mailto:${profile.email}`, icon: <Mail size={18} />, hover: "hover:text-[#DB2777]" },
+  { name: "LinkedIn", url: profile.linkedin, icon: <LinkedinIcon size={18} />, hover: "hover:text-[#334155]" },
+  { name: "Email", url: `mailto:${profile.email}`, icon: <Mail size={18} />, hover: "hover:text-[#64748B]" },
 ];
 
 export default function Footer() {
@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2 text-slate-500 text-sm">
             <span>Built with</span>
-            <Heart size={14} className="text-[#DB2777] animate-pulse" />
+            <Heart size={14} className="text-[#64748B] animate-pulse" />
             <span>
               by{" "}
               <span className="text-slate-900 font-medium">{profile.name}</span>
@@ -49,7 +49,7 @@ export default function Footer() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#4F46E5] transition-colors"
+                className="hover:text-[#475569] transition-colors"
               >
                 {p.name}
               </a>

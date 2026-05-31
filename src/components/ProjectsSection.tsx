@@ -25,8 +25,8 @@ const projects = [
       "User Dashboard",
       "API Integration",
     ],
-    color: "#4F46E5",
-    gradient: "from-[#4F46E5] to-[#4338CA]",
+    color: "#475569",
+    gradient: "from-[#475569] to-[#4338CA]",
     icon: <FileText size={32} />,
     badge: "Live Product",
   },
@@ -43,8 +43,8 @@ const projects = [
       "Smart Dashboards",
       "Market Insights",
     ],
-    color: "#0D9488",
-    gradient: "from-[#0D9488] to-[#0F766E]",
+    color: "#475569",
+    gradient: "from-[#475569] to-[#0F766E]",
     icon: <BarChart3 size={32} />,
     badge: "Live Product",
   },
@@ -74,8 +74,8 @@ export default function ProjectsSection() {
 
   return (
     <section id="projects" className="relative py-32 overflow-hidden">
-      <div className="floating-orb w-80 h-80 bg-[#0D9488] -left-20 top-1/4" />
-      <div className="floating-orb w-60 h-60 bg-[#4F46E5] -right-20 bottom-1/3" />
+      <div className="floating-orb w-80 h-80 bg-[#475569] -left-20 top-1/4" />
+      <div className="floating-orb w-60 h-60 bg-[#475569] -right-20 bottom-1/3" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         <motion.div
@@ -84,7 +84,7 @@ export default function ProjectsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-[#4F46E5] mb-4 block">
+          <span className="text-sm tracking-[0.3em] uppercase text-[#475569] mb-4 block">
             What I&apos;ve Built
           </span>
           <h2 className="text-4xl md:text-6xl font-bold">
@@ -207,7 +207,7 @@ export default function ProjectsSection() {
                 whileHover={{ y: -8 }}
                 className="glass rounded-2xl p-6 card-shine group cursor-default"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#4F46E5]/20 flex items-center justify-center text-[#4F46E5] mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-lg bg-[#475569]/20 flex items-center justify-center text-[#475569] mb-4 group-hover:scale-110 transition-transform">
                   {work.icon}
                 </div>
                 <h4 className="text-slate-900 font-semibold mb-2">{work.title}</h4>
@@ -234,9 +234,9 @@ export default function ProjectsSection() {
             </p>
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(79, 70, 229, 0.4)" }}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(71, 85, 105, 0.4)" }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#4F46E5] to-[#0D9488] text-white font-semibold text-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#475569] to-[#475569] text-white font-semibold text-lg"
             >
               Let&apos;s Talk
               <ArrowUpRight size={20} />

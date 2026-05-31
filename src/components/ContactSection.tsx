@@ -30,13 +30,13 @@ const connectLinks = [
     name: "LinkedIn",
     url: profile.linkedin,
     icon: <LinkedinIcon size={20} />,
-    color: "#0A66C2",
+    color: "#334155",
   },
   {
     name: "Email",
     url: `mailto:${profile.email}`,
     icon: <Mail size={20} />,
-    color: "#DB2777",
+    color: "#64748B",
   },
 ];
 
@@ -45,13 +45,13 @@ const productLinks = [
     name: "FlexYPDF",
     url: "https://flexypdf.com",
     icon: <FileText size={20} />,
-    color: "#4F46E5",
+    color: "#475569",
   },
   {
     name: "MunafaLab",
     url: "https://munafalab.com",
     icon: <Globe size={20} />,
-    color: "#0D9488",
+    color: "#475569",
   },
 ];
 
@@ -99,8 +99,8 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="relative py-32 overflow-hidden">
-      <div className="floating-orb w-96 h-96 bg-[#4F46E5] -left-40 top-20" />
-      <div className="floating-orb w-72 h-72 bg-[#0D9488] -right-20 bottom-20" />
+      <div className="floating-orb w-96 h-96 bg-[#475569] -left-40 top-20" />
+      <div className="floating-orb w-72 h-72 bg-[#475569] -right-20 bottom-20" />
 
       <div className="max-w-6xl mx-auto px-6" ref={ref}>
         <motion.div
@@ -109,7 +109,7 @@ export default function ContactSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-[#0D9488] mb-4 block">
+          <span className="text-sm tracking-[0.3em] uppercase text-[#475569] mb-4 block">
             Let&apos;s Connect
           </span>
           <h2 className="text-4xl md:text-6xl font-bold">
@@ -172,10 +172,10 @@ export default function ContactSection() {
                 >
                   <Sparkles
                     size={16}
-                    className="text-[#4F46E5] mt-1 shrink-0"
+                    className="text-[#475569] mt-1 shrink-0"
                   />
                   <div>
-                    <span className="text-slate-900 font-medium group-hover:text-[#4F46E5] transition-colors">
+                    <span className="text-slate-900 font-medium group-hover:text-[#475569] transition-colors">
                       {service.title}
                     </span>
                     <span className="text-slate-500 text-sm block">
@@ -243,7 +243,7 @@ export default function ContactSection() {
           >
             <div className="glass rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-8">
-                <MessageSquare size={20} className="text-[#4F46E5]" />
+                <MessageSquare size={20} className="text-[#475569]" />
                 <h3 className="text-xl font-bold text-slate-900">
                   Send Me a Message
                 </h3>
@@ -266,7 +266,7 @@ export default function ContactSection() {
                         setFormState({ ...formState, name: e.target.value })
                       }
                       placeholder="John Doe"
-                      className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-dark-700 border border-slate-200 text-slate-900 placeholder-gray-600 focus:border-[#4F46E5] focus:outline-none transition-colors"
+                      className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-dark-700 border border-slate-200 text-slate-900 placeholder-gray-600 focus:border-[#475569] focus:outline-none transition-colors"
                       required
                     />
                   </div>
@@ -288,7 +288,7 @@ export default function ContactSection() {
                         setFormState({ ...formState, email: e.target.value })
                       }
                       placeholder="john@example.com"
-                      className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-dark-700 border border-slate-200 text-slate-900 placeholder-gray-600 focus:border-[#4F46E5] focus:outline-none transition-colors"
+                      className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-dark-700 border border-slate-200 text-slate-900 placeholder-gray-600 focus:border-[#475569] focus:outline-none transition-colors"
                       required
                     />
                   </div>
@@ -305,7 +305,7 @@ export default function ContactSection() {
                     }
                     placeholder="Tell me about your project..."
                     rows={5}
-                    className="w-full px-4 py-3.5 rounded-xl bg-dark-700 border border-slate-200 text-slate-900 placeholder-gray-600 focus:border-[#4F46E5] focus:outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3.5 rounded-xl bg-dark-700 border border-slate-200 text-slate-900 placeholder-gray-600 focus:border-[#475569] focus:outline-none transition-colors resize-none"
                     required
                   />
                 </div>
@@ -316,10 +316,10 @@ export default function ContactSection() {
                   whileHover={
                     status === "sending"
                       ? undefined
-                      : { scale: 1.02, boxShadow: "0 0 30px rgba(79, 70, 229, 0.4)" }
+                      : { scale: 1.02, boxShadow: "0 0 30px rgba(71, 85, 105, 0.4)" }
                   }
                   whileTap={status === "sending" ? undefined : { scale: 0.98 }}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#4F46E5] to-[#0D9488] text-white font-semibold text-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-[#475569] to-[#475569] text-white font-semibold text-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {status === "sending" ? (
                     <>
@@ -340,8 +340,8 @@ export default function ContactSection() {
                     role="status"
                     className={`flex items-start gap-2 text-sm rounded-xl px-4 py-3 ${
                       status === "success"
-                        ? "bg-[#0D9488]/10 text-[#0D7a70]"
-                        : "bg-[#DB2777]/10 text-[#be1f63]"
+                        ? "bg-[#475569]/10 text-[#0D7a70]"
+                        : "bg-[#64748B]/10 text-[#be1f63]"
                     }`}
                   >
                     {status === "success" ? (
@@ -356,11 +356,11 @@ export default function ContactSection() {
                 {/* Trust reassurance */}
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 pt-2 text-xs text-slate-500">
                   <span className="flex items-center gap-2">
-                    <ShieldCheck size={14} className="text-[#0D9488]" />
+                    <ShieldCheck size={14} className="text-[#475569]" />
                     Your details stay private — never shared or sold
                   </span>
                   <span className="flex items-center gap-2">
-                    <Clock size={14} className="text-[#4F46E5]" />
+                    <Clock size={14} className="text-[#475569]" />
                     I personally reply within 24 hours
                   </span>
                 </div>

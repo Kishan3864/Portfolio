@@ -17,25 +17,25 @@ const highlights = [
     icon: <Briefcase size={20} />,
     title: "Professional Developer",
     desc: "6+ years as a .NET Developer building enterprise-grade applications",
-    color: "#4F46E5",
+    color: "#475569",
   },
   {
     icon: <Rocket size={20} />,
     title: "Product Builder",
     desc: "Created FlexYPDF & MunafaLab — my own SaaS products for passive income",
-    color: "#0D9488",
+    color: "#475569",
   },
   {
     icon: <Target size={20} />,
     title: "Freelancing Journey",
     desc: "Expanding into freelancing to help businesses build powerful digital solutions",
-    color: "#DB2777",
+    color: "#64748B",
   },
   {
     icon: <Coffee size={20} />,
     title: "Lifelong Learner",
     desc: "Constantly exploring new technologies, frameworks, and business strategies",
-    color: "#7C3AED",
+    color: "#64748B",
   },
 ];
 
@@ -56,7 +56,7 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="relative py-32 overflow-hidden">
-      <div className="floating-orb w-72 h-72 bg-[#4F46E5] top-20 -right-20" />
+      <div className="floating-orb w-72 h-72 bg-[#475569] top-20 -right-20" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         {/* Section Header */}
@@ -66,7 +66,7 @@ export default function AboutSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-[#4F46E5] mb-4 block">
+          <span className="text-sm tracking-[0.3em] uppercase text-[#475569] mb-4 block">
             Get to Know Me
           </span>
           <h2 className="text-4xl md:text-6xl font-bold">
@@ -84,8 +84,8 @@ export default function AboutSection() {
           >
             {/* Photo */}
             <div className="relative w-64 h-72 mx-auto lg:mx-0 mb-8">
-              <div className="absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#4F46E5] to-[#0D9488] animate-spin-slow opacity-30 blur-xl" />
-              <div className="relative w-full h-full rounded-3xl bg-white border border-[#4F46E5]/15 overflow-hidden shadow-xl shadow-indigo-500/10">
+              <div className="shaped absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#475569] to-[#475569] animate-spin-slow opacity-30 blur-xl" />
+              <div className="shaped relative w-full h-full rounded-3xl bg-white border border-[#475569]/15 overflow-hidden shadow-xl shadow-slate-400/10">
                 <Image
                   src="/profile.png"
                   alt="Kishan Patel"
@@ -94,7 +94,7 @@ export default function AboutSection() {
                   className="object-cover object-top select-none"
                 />
               </div>
-              <div className="absolute -bottom-3 -right-3 px-4 py-2 rounded-full bg-gradient-to-r from-[#4F46E5] to-[#0D9488] text-sm font-semibold text-white shadow-lg shadow-indigo-500/30">
+              <div className="absolute -bottom-3 -right-3 px-4 py-2 rounded-full bg-gradient-to-r from-[#475569] to-[#475569] text-sm font-semibold text-white shadow-lg shadow-slate-400/30">
                 <MapPin size={14} className="inline mr-1" /> India
               </div>
             </div>
@@ -102,7 +102,7 @@ export default function AboutSection() {
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
               I&apos;m <span className="text-slate-900 font-semibold">Kishan</span>, a passionate
               software developer with over{" "}
-              <span className="text-[#4F46E5] font-semibold">6 years of experience</span> in
+              <span className="text-[#475569] font-semibold">6 years of experience</span> in
               the .NET ecosystem. My journey started with curiosity about how
               software works, and it evolved into a career of building robust,
               scalable applications.
@@ -110,7 +110,7 @@ export default function AboutSection() {
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
               Beyond my day job, I&apos;ve channeled my entrepreneurial spirit into
               building{" "}
-              <span className="text-[#0D9488] font-semibold">two SaaS products</span> —
+              <span className="text-[#475569] font-semibold">two SaaS products</span> —
               FlexYPDF and MunafaLab — which serve as both my passion projects
               and income streams. Now, I&apos;m stepping into the freelancing world
               to help others bring their digital visions to life.
@@ -145,7 +145,7 @@ export default function AboutSection() {
                     <div style={{ color: item.color }}>{item.icon}</div>
                   </div>
                   <div>
-                    <h3 className="text-slate-900 font-semibold text-lg mb-1 group-hover:text-[#4F46E5] transition-colors">
+                    <h3 className="text-slate-900 font-semibold text-lg mb-1 group-hover:text-[#475569] transition-colors">
                       {item.title}
                     </h3>
                     <p className="text-slate-600">{item.desc}</p>
@@ -164,7 +164,7 @@ export default function AboutSection() {
           className="mt-20"
         >
           <div className="flex items-center gap-3 mb-8">
-            <Heart size={20} className="text-[#DB2777]" />
+            <Heart size={20} className="text-[#64748B]" />
             <h3 className="text-2xl font-bold text-slate-900">
               My Interests & Passions
             </h3>
@@ -178,7 +178,7 @@ export default function AboutSection() {
                 transition={{ duration: 0.4, delay: 0.9 + i * 0.08 }}
                 whileHover={{
                   scale: 1.1,
-                  boxShadow: "0 0 20px rgba(79, 70, 229, 0.3)",
+                  boxShadow: "0 0 20px rgba(71, 85, 105, 0.3)",
                 }}
                 className="px-5 py-2.5 rounded-full glass glass-hover text-slate-700 text-sm cursor-default"
               >
@@ -200,19 +200,19 @@ export default function AboutSection() {
               icon: <Zap size={24} />,
               title: "What Drives Me",
               desc: "Building products that solve real problems and creating value through technology",
-              color: "#4F46E5",
+              color: "#475569",
             },
             {
               icon: <Target size={24} />,
               title: "My Goal",
               desc: "To become a world-class freelance developer while growing my own SaaS products",
-              color: "#0D9488",
+              color: "#475569",
             },
             {
               icon: <Rocket size={24} />,
               title: "My Vision",
               desc: "Combining corporate experience with entrepreneurial mindset to deliver exceptional results",
-              color: "#DB2777",
+              color: "#64748B",
             },
           ].map((fact) => (
             <div

@@ -51,9 +51,9 @@ export default function HeroSection() {
       className="relative min-h-screen flex items-center overflow-hidden pt-28 pb-16"
     >
       {/* Animated orbs */}
-      <div className="floating-orb w-96 h-96 bg-[#4F46E5] -top-20 -left-20 animate-float" />
-      <div className="floating-orb w-80 h-80 bg-[#0D9488] -bottom-20 -right-20 animate-float-delayed" />
-      <div className="floating-orb w-64 h-64 bg-[#DB2777] top-1/3 right-1/4 animate-float" />
+      <div className="floating-orb w-96 h-96 bg-[#475569] -top-20 -left-20 animate-float" />
+      <div className="floating-orb w-80 h-80 bg-[#475569] -bottom-20 -right-20 animate-float-delayed" />
+      <div className="floating-orb w-64 h-64 bg-[#64748B] top-1/3 right-1/4 animate-float" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -65,10 +65,13 @@ export default function HeroSection() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="mb-6"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-slate-600">
-                <Sparkles size={14} className="text-[#0D9488]" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full gradient-ring text-sm text-slate-600 shadow-sm">
+                <Sparkles size={14} className="text-[#475569]" />
                 Available for Freelancing
-                <span className="w-2 h-2 rounded-full bg-[#0D9488] animate-pulse" />
+                <span className="relative flex w-2 h-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#475569] opacity-60 animate-ping" />
+                  <span className="relative inline-flex w-2 h-2 rounded-full bg-[#475569]" />
+                </span>
               </div>
             </motion.div>
 
@@ -88,9 +91,9 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl md:text-3xl font-light text-slate-600 mb-5 h-10 flex items-center justify-center lg:justify-start"
             >
-              <Code2 className="inline mr-2 text-[#4F46E5]" size={28} />
+              <Code2 className="inline mr-2 text-[#475569]" size={28} />
               <span className="text-slate-900 font-medium">{displayText}</span>
-              <span className="inline-block w-0.5 h-7 bg-[#4F46E5] ml-1 animate-pulse" />
+              <span className="inline-block w-0.5 h-7 bg-[#475569] ml-1 animate-pulse" />
             </motion.div>
 
             <motion.p
@@ -100,8 +103,8 @@ export default function HeroSection() {
               className="text-lg text-slate-500 max-w-xl mx-auto lg:mx-0 mb-10"
             >
               6+ years of building enterprise solutions. Creator of{" "}
-              <span className="text-[#0D9488] font-semibold">FlexYPDF</span> &{" "}
-              <span className="text-[#4F46E5] font-semibold">MunafaLab</span>.
+              <span className="text-[#475569] font-semibold">FlexYPDF</span> &{" "}
+              <span className="text-[#475569] font-semibold">MunafaLab</span>.
               Turning ideas into powerful digital products.
             </motion.p>
 
@@ -113,17 +116,17 @@ export default function HeroSection() {
             >
               <motion.a
                 href="#projects"
-                whileHover={{ scale: 1.05, boxShadow: "0 12px 30px rgba(79, 70, 229, 0.35)" }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full bg-gradient-to-r from-[#4F46E5] to-[#0D9488] text-white font-semibold text-lg shadow-lg shadow-indigo-500/20"
+                className="btn-gradient inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-lg"
               >
-                View My Work
+                <span>View My Work</span>
               </motion.a>
               <motion.a
                 href="#about"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full glass glass-hover text-slate-800 font-semibold text-lg"
+                className="px-8 py-4 rounded-full gradient-ring glass-hover text-slate-800 font-semibold text-lg"
               >
                 Know More About Me
               </motion.a>
@@ -155,13 +158,13 @@ export default function HeroSection() {
                   aria-label="Kishan Patel on LinkedIn"
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-11 h-11 rounded-full glass glass-hover flex items-center justify-center text-slate-700 hover:text-[#0A66C2]"
+                  className="w-11 h-11 rounded-full glass glass-hover flex items-center justify-center text-slate-700 hover:text-[#334155]"
                 >
                   <LinkedinIcon size={20} />
                 </motion.a>
               </div>
               <span className="text-sm text-slate-500 flex items-center gap-1.5">
-                <MapPin size={14} className="text-[#4F46E5]" />
+                <MapPin size={14} className="text-[#475569]" />
                 Based in {profile.location} · Replies within 24 hours
               </span>
             </motion.div>
@@ -175,14 +178,19 @@ export default function HeroSection() {
             className="relative order-1 lg:order-2 flex justify-center"
           >
             <div className="relative w-[300px] h-[380px] sm:w-[360px] sm:h-[460px] lg:w-[420px] lg:h-[520px]">
+              {/* Decorative floating accent dots */}
+              <span className="absolute -top-2 right-12 w-3 h-3 rounded-full bg-gradient-to-br from-[#475569] to-[#64748B] shadow-lg shadow-slate-400/40 animate-float" />
+              <span className="absolute bottom-24 -right-3 w-2 h-2 rounded-full bg-[#64748B] shadow-md shadow-slate-400/40 animate-float-delayed" />
+              <span className="absolute top-28 -left-3 w-2.5 h-2.5 rounded-full bg-[#475569] shadow-md shadow-slate-400/40 animate-float" />
+
               {/* Soft gradient glow behind everything */}
-              <div className="absolute -inset-4 rounded-[42%_58%_58%_42%] bg-gradient-to-br from-[#4F46E5] via-[#7C3AED] to-[#0D9488] opacity-50 blur-3xl animate-float-delayed" />
+              <div className="shaped absolute -inset-4 rounded-[42%_58%_58%_42%] bg-gradient-to-br from-[#475569] via-[#64748B] to-[#475569] opacity-50 blur-3xl animate-float-delayed" />
 
               {/* The gradient shape — acts as a thin frame around the photo */}
-              <div className="absolute inset-0 rounded-[42%_58%_58%_42%] bg-gradient-to-br from-[#4F46E5] via-[#7C3AED] to-[#0D9488] shadow-2xl shadow-indigo-500/30 animate-float-delayed" />
+              <div className="shaped absolute inset-0 rounded-[42%_58%_58%_42%] bg-gradient-to-br from-[#475569] via-[#64748B] to-[#475569] shadow-2xl shadow-slate-400/30 animate-float-delayed" />
 
               {/* The photo — clipped to the same gradient shape so it sits inside it */}
-              <div className="group absolute inset-[6px] rounded-[42%_58%_58%_42%] overflow-hidden animate-float-delayed">
+              <div className="shaped group absolute inset-[6px] rounded-[42%_58%_58%_42%] overflow-hidden animate-float-delayed">
                 <Image
                   src="/profile.png"
                   alt="Kishan Patel"
@@ -192,7 +200,7 @@ export default function HeroSection() {
                   className="object-cover object-center select-none grayscale-[70%] brightness-95 contrast-105 transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:brightness-105 group-hover:contrast-100 group-hover:scale-105"
                 />
                 {/* Subtle color tint overlay that fades out on hover */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#4F46E5]/20 to-[#0D9488]/20 mix-blend-overlay transition-opacity duration-700 group-hover:opacity-0" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#475569]/20 to-[#475569]/20 mix-blend-overlay transition-opacity duration-700 group-hover:opacity-0" />
               </div>
 
               {/* Floating stat cards */}
@@ -200,7 +208,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.6 }}
-                className="absolute -left-2 bottom-10 glass rounded-2xl px-4 py-3 text-left"
+                className="absolute -left-2 bottom-10 gradient-ring shadow-xl rounded-2xl px-4 py-3 text-left"
               >
                 <div className="text-2xl font-bold gradient-text">6+</div>
                 <div className="text-xs text-slate-500">Years Experience</div>
@@ -210,7 +218,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.6 }}
-                className="absolute -right-2 top-16 glass rounded-2xl px-4 py-3 text-left"
+                className="absolute -right-2 top-16 gradient-ring shadow-xl rounded-2xl px-4 py-3 text-left"
               >
                 <div className="text-2xl font-bold gradient-text">2</div>
                 <div className="text-xs text-slate-500">SaaS Products</div>

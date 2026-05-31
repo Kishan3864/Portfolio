@@ -35,11 +35,11 @@ export default function CustomCursor() {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-3 h-3 -ml-1.5 -mt-1.5 rounded-full bg-[#4F46E5] pointer-events-none z-[100]"
+        className="shaped fixed top-0 left-0 w-3 h-3 -ml-1.5 -mt-1.5 rounded-full bg-[#475569] pointer-events-none z-[100]"
         style={{ x: dotX, y: dotY }}
       />
       <motion.div
-        className="fixed top-0 left-0 w-9 h-9 -ml-[18px] -mt-[18px] rounded-full border border-[#4F46E5]/50 pointer-events-none z-[100]"
+        className="shaped fixed top-0 left-0 w-9 h-9 -ml-[18px] -mt-[18px] rounded-full border border-[#475569]/50 pointer-events-none z-[100]"
         style={{ x: ringX, y: ringY }}
       />
     </>

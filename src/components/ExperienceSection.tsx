@@ -31,7 +31,7 @@ export default function ExperienceSection() {
 
   return (
     <section className="relative py-32 overflow-hidden">
-      <div className="floating-orb w-72 h-72 bg-[#DB2777] -right-20 top-40" />
+      <div className="floating-orb w-72 h-72 bg-[#64748B] -right-20 top-40" />
 
       <div className="max-w-6xl mx-auto px-6" ref={ref}>
         <motion.div
@@ -40,7 +40,7 @@ export default function ExperienceSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-[#7C3AED] mb-4 block">
+          <span className="text-sm tracking-[0.3em] uppercase text-[#64748B] mb-4 block">
             Where I&apos;ve Worked
           </span>
           <h2 className="text-4xl md:text-6xl font-bold">
@@ -57,10 +57,10 @@ export default function ExperienceSection() {
           className="glass rounded-3xl overflow-hidden"
         >
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#4F46E5]/10 to-[#0D9488]/10 p-8 md:p-12 border-b border-slate-200">
+          <div className="bg-gradient-to-r from-[#475569]/10 to-[#475569]/10 p-8 md:p-12 border-b border-slate-200">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#4F46E5] to-[#0D9488] flex items-center justify-center shrink-0">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#475569] to-[#475569] flex items-center justify-center shrink-0">
                   <Building2 size={28} className="text-white" />
                 </div>
                 <div>
@@ -98,7 +98,7 @@ export default function ExperienceSection() {
             {/* Key Achievements */}
             <div className="mb-8">
               <div className="flex items-center gap-2 mb-6">
-                <Award size={20} className="text-[#4F46E5]" />
+                <Award size={20} className="text-[#475569]" />
                 <h4 className="text-xl font-bold text-slate-900">
                   Key Achievements & Responsibilities
                 </h4>
@@ -114,7 +114,7 @@ export default function ExperienceSection() {
                   >
                     <CheckCircle2
                       size={18}
-                      className="text-[#0D9488] mt-0.5 shrink-0"
+                      className="text-[#475569] mt-0.5 shrink-0"
                     />
                     <span className="text-slate-700 text-sm">{item}</span>
                   </motion.div>
@@ -151,7 +151,7 @@ export default function ExperienceSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-16 grid md:grid-cols-2 gap-6"
         >
-          <div className="glass rounded-2xl p-8 border-l-4 border-[#4F46E5]">
+          <div className="glass rounded-2xl p-8 border-l-4 border-[#475569]">
             <h4 className="text-xl font-bold text-slate-900 mb-2">FlexYPDF</h4>
             <p className="text-slate-500 text-sm mb-3">Personal Product</p>
             <p className="text-slate-600">
@@ -159,7 +159,7 @@ export default function ExperienceSection() {
               architecture, development, deployment, and marketing single-handedly.
             </p>
           </div>
-          <div className="glass rounded-2xl p-8 border-l-4 border-[#0D9488]">
+          <div className="glass rounded-2xl p-8 border-l-4 border-[#475569]">
             <h4 className="text-xl font-bold text-slate-900 mb-2">MunafaLab</h4>
             <p className="text-slate-500 text-sm mb-3">Personal Product</p>
             <p className="text-slate-600">

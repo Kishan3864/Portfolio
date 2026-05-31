@@ -16,7 +16,7 @@ const skillCategories = [
   {
     name: "Backend",
     icon: <Server size={20} />,
-    color: "#4F46E5",
+    color: "#475569",
     skills: [
       { name: "C# / .NET", level: 95 },
       { name: "ASP.NET Core", level: 92 },
@@ -29,7 +29,7 @@ const skillCategories = [
   {
     name: "Frontend",
     icon: <Globe size={20} />,
-    color: "#0D9488",
+    color: "#475569",
     skills: [
       { name: "HTML / CSS / JS", level: 90 },
       { name: "React.js", level: 80 },
@@ -42,7 +42,7 @@ const skillCategories = [
   {
     name: "Database",
     icon: <Database size={20} />,
-    color: "#DB2777",
+    color: "#64748B",
     skills: [
       { name: "SQL Server", level: 92 },
       { name: "PostgreSQL", level: 78 },
@@ -55,7 +55,7 @@ const skillCategories = [
   {
     name: "Cloud & DevOps",
     icon: <Cloud size={20} />,
-    color: "#7C3AED",
+    color: "#64748B",
     skills: [
       { name: "Azure", level: 80 },
       { name: "Docker", level: 75 },
@@ -120,7 +120,7 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" className="relative py-32 overflow-hidden">
-      <div className="floating-orb w-72 h-72 bg-[#4F46E5] -right-20 top-20" />
+      <div className="floating-orb w-72 h-72 bg-[#475569] -right-20 top-20" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         <motion.div
@@ -129,7 +129,7 @@ export default function SkillsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-[#DB2777] mb-4 block">
+          <span className="text-sm tracking-[0.3em] uppercase text-[#64748B] mb-4 block">
             What I Bring to the Table
           </span>
           <h2 className="text-4xl md:text-6xl font-bold">
@@ -204,10 +204,10 @@ export default function SkillsSection() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           {[
-            { value: "C#", label: "Primary Language", color: "#4F46E5" },
-            { value: ".NET", label: "Core Framework", color: "#0D9488" },
-            { value: "Azure", label: "Cloud Platform", color: "#7C3AED" },
-            { value: "React", label: "Frontend Choice", color: "#DB2777" },
+            { value: "C#", label: "Primary Language", color: "#475569" },
+            { value: ".NET", label: "Core Framework", color: "#475569" },
+            { value: "Azure", label: "Cloud Platform", color: "#64748B" },
+            { value: "React", label: "Frontend Choice", color: "#64748B" },
           ].map((item) => (
             <motion.div
               key={item.label}
@@ -244,7 +244,7 @@ export default function SkillsSection() {
                 transition={{ duration: 0.4, delay: 0.9 + i * 0.06 }}
                 whileHover={{
                   scale: 1.1,
-                  boxShadow: "0 0 15px rgba(79, 70, 229, 0.3)",
+                  boxShadow: "0 0 15px rgba(71, 85, 105, 0.3)",
                 }}
                 className="flex items-center gap-2 px-4 py-2.5 rounded-full glass glass-hover text-slate-700 text-sm cursor-default"
               >

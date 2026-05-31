@@ -40,7 +40,7 @@ export default function ParticleField() {
     const area = window.innerWidth * window.innerHeight;
     const count = Math.min(36, Math.max(16, Math.round(area / 36000)));
 
-    const colors = ["#4F46E5", "#0D9488", "#DB2777", "#7C3AED"];
+    const colors = ["#475569", "#475569", "#64748B", "#64748B"];
     const particles: Particle[] = Array.from({ length: count }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
