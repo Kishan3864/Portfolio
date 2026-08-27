@@ -1,0 +1,479 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* "Paper & Ink" palette — warm cream ground, ink lines, burnt-orange accent. */
+  --color-paper: #f8f4ec;
+  --color-surface: #fffdf7;
+  --color-ink: #1c1917;
+  --color-accent: #e4580b;
+  --color-accent-deep: #c2410c;
+  --color-peach: #ffe1cb;
+  --color-teal: #0e7466;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #f8f4ec;
+}
+
+body {
+  color: #44403c;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Base heading defaults live in the `base` layer so a Tailwind text-colour
+   utility (e.g. the light heading on the dark footer) can still override them. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-fraunces), Georgia, serif;
+    color: #1c1917;
+  }
+}
+
+::selection {
+  background: rgba(228, 88, 11, 0.25);
+  color: #1c1917;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #efe9dc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1c1917;
+  border-radius: 6px;
+  border: 2px solid #efe9dc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e4580b;
+}
+
+/* ---- Paper ground: fine dotted grid + a whisper of grain, both fixed and
+   static (GPU-composited once, never repainted on scroll). ---- */
+.paper-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(28, 25, 23, 0.13) 1px, transparent 1.1px),
+    radial-gradient(48vw 40vw at 88% -6%, rgba(228, 88, 11, 0.07), transparent 60%),
+    radial-gradient(44vw 40vw at 0% 104%, rgba(14, 116, 102, 0.06), transparent 60%);
+  background-size: 26px 26px, 100% 100%, 100% 100%;
+}
+
+.paper-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+}
+
+/* ---- Cards: cream panels with an ink border and a hard offset shadow that
+   turns orange and grows on hover. The signature move of this design. ---- */
+.card {
+  background: #fffdf7;
+  border: 1.5px solid #1c1917;
+  border-radius: 18px;
+  box-shadow: 4px 4px 0 rgba(28, 25, 23, 0.9);
+}
+
+.card-hover {
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 #e4580b;
+}
+
+/* Softer variant for quiet chips/pills. */
+.chip {
+  background: #fffdf7;
+  border: 1.5px solid #1c1917;
+  border-radius: 999px;
+  box-shadow: 2.5px 2.5px 0 rgba(28, 25, 23, 0.85);
+}
+
+/* ---- Button shape ----
+   Not a plain pill or rounded rectangle: two opposite corners are cut square
+   while the other two stay generously round, giving every button a distinct
+   angled silhouette that still works with the ink border + offset shadow. ---- */
+.btn-shape {
+  border-radius: 20px 4px 20px 4px;
+}
+
+/* Mirror the cut so a pair of side-by-side buttons doesn't look copy-pasted. */
+.btn-shape-alt {
+  border-radius: 4px 20px 4px 20px;
+}
+
+/* ---- Buttons ---- */
+.btn-ink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #1c1917;
+  color: #fffdf7;
+  border: 1.5px solid #1c1917;
+  border-radius: 20px 4px 20px 4px;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-ink:hover {
+  background: #e4580b;
+  border-color: #1c1917;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 rgba(28, 25, 23, 0.9);
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #e4580b;
+  color: #fffdf7;
+  border: 1.5px solid #1c1917;
+  border-radius: 4px 20px 4px 20px;
+  font-weight: 700;
+  box-shadow: 4px 4px 0 rgba(28, 25, 23, 0.9);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+}
+
+.btn-accent:hover {
+  background: #c2410c;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(28, 25, 23, 0.9);
+}
+
+.btn-accent:active,
+.btn-ink:active {
+  transform: translate(0, 0);
+  box-shadow: 2px 2px 0 rgba(28, 25, 23, 0.9);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #1c1917;
+  border: 1.5px solid #1c1917;
+  border-radius: 20px 4px 20px 4px;
+  font-weight: 600;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn-outline:hover {
+  background: #1c1917;
+  color: #fffdf7;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 rgba(228, 88, 11, 0.9);
+}
+
+/* ---- Marker highlight: an orange "highlighter" swipe behind key words. ---- */
+.marker {
+  background-image: linear-gradient(120deg, #ffc79e 0%, #ff9d5c 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 42%;
+  background-position: 0 82%;
+}
+
+.marker-soft {
+  background-image: linear-gradient(120deg, #ffe1cb 0%, #ffd0ab 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 42%;
+  background-position: 0 82%;
+}
+
+/* ---- Mono section label with a leading dash. ---- */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #c2410c;
+}
+
+.section-label::before {
+  content: "";
+  width: 2rem;
+  height: 2px;
+  background: #c2410c;
+}
+
+/* ---- Section divider: ink hairline with a rotated accent square. ---- */
+.rule-line {
+  position: relative;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(28, 25, 23, 0.4), transparent);
+}
+
+.rule-line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: #e4580b;
+  border: 1.5px solid #1c1917;
+}
+
+/* ---- Outlined display text for marquee strips. ---- */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(28, 25, 23, 0.75);
+}
+
+/* ---- Infinite marquee. Content duplicated once, so -50% lands on the seam. ---- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+  will-change: transform;
+}
+
+.marquee-slow {
+  animation-duration: 46s;
+}
+
+.marquee-reverse {
+  animation-direction: reverse;
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ---- Ambient warm blobs (background set inline per use). ---- */
+.blob-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(56px);
+  opacity: 0.4;
+  pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ---- Sticker chips: slightly rotated, playful. ---- */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fffdf7;
+  border: 1.5px solid #1c1917;
+  border-radius: 999px;
+  box-shadow: 2.5px 2.5px 0 rgba(28, 25, 23, 0.85);
+  transform: rotate(-2deg);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sticker:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+/* ---- Motion helpers ---- */
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateZ(0); }
+  50% { transform: translateY(-14px) translateZ(0); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0) translateZ(0); }
+  50% { transform: translateY(-9px) translateZ(0); }
+}
+
+.animate-float {
+  animation: float 7s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 9s ease-in-out 1.5s infinite;
+}
+
+/* ---- Animated gradient border. The angle is registered as a real custom
+   property so it can be interpolated; browsers without @property simply get a
+   static gradient rather than a broken one. ---- */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-rotate {
+  to { --angle: 360deg; }
+}
+
+.glow-frame {
+  background: conic-gradient(
+    from var(--angle),
+    #e4580b,
+    #fbbf24,
+    #fffdf7,
+    #e4580b
+  );
+  animation: border-rotate 6s linear infinite;
+}
+
+/* Soft coloured light pooling behind the panel. */
+@keyframes glow-drift {
+  0%, 100% { transform: translate3d(-6%, -4%, 0) scale(1); opacity: 0.55; }
+  50% { transform: translate3d(6%, 4%, 0) scale(1.12); opacity: 0.8; }
+}
+
+.glow-pool {
+  animation: glow-drift 9s ease-in-out infinite;
+}
+
+/* One slow sheen crossing the panel. */
+@keyframes sheen {
+  0% { transform: translateX(-120%) skewX(-12deg); }
+  60%, 100% { transform: translateX(240%) skewX(-12deg); }
+}
+
+.sheen {
+  animation: sheen 7s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 16s linear infinite;
+}
+
+.animate-spin-slower {
+  animation: spin-slow 26s linear infinite;
+}
+
+@keyframes bob-rotate {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(3deg) translateY(-6px); }
+}
+
+.animate-bob {
+  animation: bob-rotate 5s ease-in-out infinite;
+}
+
+/* Underline that draws in on hover (nav + inline links). */
+.link-draw {
+  position: relative;
+}
+
+.link-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -2px;
+  height: 2px;
+  background: #e4580b;
+  transition: right 0.3s ease;
+}
+
+.link-draw:hover::after {
+  right: 0;
+}
+
+/* ============================================================
+   ADMIN LIGHT SCOPE
+   The /admin dashboard was built against `glass`, `btn-gradient`
+   and `gradient-text` classes. They only exist here now, scoped,
+   so the public redesign can never break the dashboard.
+   ============================================================ */
+.admin-light {
+  min-height: 100vh;
+  background: #f6f7f9;
+  color: #0f172a;
+  position: relative;
+  z-index: 10;
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+.admin-light h1,
+.admin-light h2,
+.admin-light h3 {
+  font-family: var(--font-geist-sans), sans-serif;
+  color: #0f172a;
+}
+
+.admin-light .glass {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  border-radius: 12px;
+  box-shadow:
+    0 10px 30px -16px rgba(15, 23, 42, 0.16),
+    0 2px 8px -4px rgba(15, 23, 42, 0.05);
+}
+
+.admin-light .btn-gradient {
+  color: #ffffff;
+  background: linear-gradient(120deg, #1e293b, #334155, #475569);
+  border-radius: 8px;
+}
+
+.admin-light .gradient-text {
+  background: linear-gradient(135deg, #334155, #475569, #64748b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Accessibility + performance escape hatch. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  .blob-orb {
+    display: none;
+  }
+}

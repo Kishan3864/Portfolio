@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Ink tile with the brand's cut-corner silhouette -->
+  <path d="M14 2 H62 V50 Q62 62 50 62 H2 V14 Q2 2 14 2 Z" fill="#1c1917"/>
+  <!-- Burnt-orange corner accent -->
+  <path d="M62 50 Q62 62 50 62 L62 62 Z" fill="#e4580b"/>
+  <path d="M2 14 Q2 2 14 2 L2 2 Z" fill="#e4580b"/>
+
+  <!-- "KP" drawn as solid shapes: no font dependency, sharp at 16px -->
+  <g fill="#fffdf7">
+    <!-- K: stem + two diagonals -->
+    <rect x="12" y="19" width="6.5" height="26"/>
+    <path d="M19.5 32.5 L28.5 19 H35.5 L25 32.5 Z"/>
+    <path d="M19.5 31.5 L27.5 45 H34.5 L25.5 30 Z"/>
+    <!-- P: stem + bowl -->
+    <rect x="38" y="19" width="6.5" height="26"/>
+    <path d="M44.5 19 H50 a8.5 8.5 0 0 1 0 17 H44.5 V30.5 H49
+             a3 3 0 0 0 0 -6 H44.5 Z"/>
+  </g>
+</svg>
