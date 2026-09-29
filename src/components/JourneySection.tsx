@@ -10,6 +10,7 @@ import {
   TrendingUp,
   Layers,
 } from "lucide-react";
+import { projectStats } from "@/lib/projects";
 
 const timelineData = [
   {
@@ -61,7 +62,7 @@ const timelineData = [
     year: "Product Era",
     title: "Building My Own Product Suite",
     description:
-      "Launched FlexyPdf (140+ browser tools), MunafaLab (finance education), ScriptProof (PCI compliance monitoring), plus marketplaces, dashboards and calculators — 13+ live deployments running on my own VPS infrastructure.",
+      `Launched FlexyPdf (140+ browser tools), then multi-role platforms, dashboards and client websites — ${projectStats.total}+ live deployments running on my own VPS infrastructure.`,
     icon: <Rocket size={20} />,
     color: "#be185d",
     side: "right" as const,
@@ -70,7 +71,8 @@ const timelineData = [
     year: "Now",
     title: "Freelancing & Client Work",
     description:
-      "Shipping real client projects through my studio Nexbyte — event planners, restaurants, contractors and startups — while maintaining my full-time role and growing my own products. Ready to build yours next.",
+      "Shipping real client projects — event planners, restaurants, contractors and startups — while maintaining my full-time role and growing my own products. Ready to build yours next.",
+
     icon: <Layers size={20} />,
     color: "#c2410c",
     side: "left" as const,

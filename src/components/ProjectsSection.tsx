@@ -12,17 +12,17 @@ import {
   type ProjectCategory,
 } from "@/lib/projects";
 
+// Only categories that actually have projects get a filter tab.
 const filters: Array<ProjectCategory | "all"> = [
   "all",
-  "product",
-  "platform",
-  "client",
+  ...(Object.keys(categoryLabels) as Array<ProjectCategory | "all">).filter(
+    (c): c is ProjectCategory =>
+      c !== "all" && projects.some((p) => p.category === c),
+  ),
 ];
 
 const statusStyles: Record<Project["status"], { bg: string; fg: string }> = {
   Live: { bg: "#dcfce7", fg: "#15803d" },
-  "In Development": { bg: "#fef3c7", fg: "#b45309" },
-  "Private Beta": { bg: "#ede9fe", fg: "#6d28d9" },
 };
 
 function StatusBadge({ status }: { status: Project["status"] }) {
@@ -41,7 +41,8 @@ function StatusBadge({ status }: { status: Project["status"] }) {
   );
 }
 
-// Big showcase card for the three flagship products.
+// Big showcase card for the flagship (featured) projects.
+
 function FeaturedCard({ project, index, inView }: { project: Project; index: number; inView: boolean }) {
   const Icon = project.icon;
   return (

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/BrandIcons";
 import { profile } from "@/lib/profile";
+import { featuredProjects, projectStats } from "@/lib/projects";
 import {
   validateContact,
   COOLDOWN_SECONDS,
@@ -233,8 +234,8 @@ export default function ContactSection() {
               <p className="text-[#57534e] leading-relaxed">
                 Whether you need a full-stack web application, an API system, a
                 SaaS product, or consulting on your .NET project — I&apos;m here
-                to help. With 6+ years of experience and 13+ live products of my
-                own, I bring both technical depth and real product-shipping
+                to help. With 6+ years of experience and {projectStats.total}+
+                live products of my own, I bring both technical depth and real product-shipping
                 experience to every engagement.
               </p>
             </div>
@@ -305,7 +306,8 @@ export default function ContactSection() {
             <div>
               <p className="section-label mb-4">My Live Products</p>
               <div className="flex flex-wrap gap-4">
-                {profile.products.map((link) => (
+                {featuredProjects.map((link) => (
+
                   <motion.a
                     key={link.name}
                     href={link.url}

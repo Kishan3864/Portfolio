@@ -8,6 +8,7 @@ import {
   Award,
   ArrowUpRight,
 } from "lucide-react";
+import { featuredProjects, type ProjectCategory } from "@/lib/projects";
 
 const achievements = [
   "Built and maintained enterprise-level .NET applications serving thousands of users",
@@ -26,30 +27,22 @@ const techUsed = [
   "jQuery", "HTML/CSS", "Microservices", "REST APIs",
 ];
 
-// Work beyond the day job — own products and the client studio.
-const ventures = [
-  {
-    name: "FlexyPdf",
-    kind: "SaaS Product",
-    url: "https://flexypdf.com",
-    color: "#4338ca",
-    desc: "Built a 140+ tool, privacy-first utility platform from scratch — architecture, development, SEO, deployment and marketing, single-handedly.",
-  },
-  {
-    name: "MunafaLab",
-    kind: "Finance Publication",
-    url: "https://munafalab.com",
-    color: "#0e7466",
-    desc: "Designed and grew an independent personal-finance education platform for Indian investors, with a newsletter and research-verified content.",
-  },
-  {
-    name: "Nexbyte Studio",
-    kind: "Client Work",
-    url: "https://company.flexypdf.com",
-    color: "#c2410c",
-    desc: "My studio for client projects — event planners, restaurants, contractors and startups get end-to-end builds from one accountable engineer.",
-  },
-];
+// Work beyond the day job — the flagship projects, straight from the catalogue
+// so this list can never show something that is no longer live.
+const ventureKind: Record<ProjectCategory, string> = {
+  product: "SaaS Product",
+  platform: "Platform",
+  client: "Client Website",
+};
+
+const ventures = featuredProjects.map((p) => ({
+  name: p.name,
+  kind: ventureKind[p.category],
+  url: p.url,
+  color: p.accent,
+  desc: p.description,
+}));
+
 
 export default function ExperienceSection() {
   const ref = useRef(null);

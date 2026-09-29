@@ -1,23 +1,18 @@
 import type { ComponentType } from "react";
 import {
   FileText,
-  TrendingUp,
-  ShieldCheck,
-  Coins,
-  Code2,
-  Package,
   MapPin,
   Users,
   Rocket,
   Sparkles,
   Utensils,
-  Zap,
   Heart,
 } from "lucide-react";
 
 // Every live deployment on the Hostinger VPS, verified against its real URL.
 // One record per project so the Projects section, footer and metadata always
-// agree on names, links and descriptions.
+// agree on names, links and descriptions. Only projects that are actually live
+// belong here — when one goes down it is removed, not left in as "In Development".
 
 type IconType = ComponentType<{ size?: number | string; className?: string }>;
 
@@ -33,7 +28,7 @@ export interface Project {
   category: ProjectCategory;
   icon: IconType;
   accent: string;
-  status: "Live" | "In Development" | "Private Beta";
+  status: "Live";
   featured?: boolean;
 }
 
@@ -60,75 +55,8 @@ export const projects: Project[] = [
     status: "Live",
     featured: true,
   },
-  {
-    name: "MunafaLab",
-    tagline: "Indian personal-finance research & education",
-    url: "https://munafalab.com",
-    host: "munafalab.com",
-    description:
-      "An independent finance publication for Indian retail investors — credit cards, mutual funds, gold, government schemes and tax saving, all verified against SEBI, RBI and AMFI primary sources, with a weekly newsletter and quarterly content refreshes.",
-    tags: ["Content Platform", "Newsletter", "SEO", "Fintech"],
-    category: "product",
-    icon: TrendingUp,
-    accent: "#0e7466",
-    status: "Live",
-    featured: true,
-  },
-  {
-    name: "ScriptProof",
-    tagline: "Payment-page script monitoring for PCI DSS",
-    url: "https://pci.flexypdf.com",
-    host: "pci.flexypdf.com",
-    description:
-      "A compliance SaaS that monitors checkout-page JavaScript and security headers, fingerprints every script with SHA-256, alerts on tampering and generates auditor-ready evidence packs for PCI DSS requirements 6.4.3 and 11.6.1.",
-    tags: ["Security", "PCI DSS", "Monitoring", "SaaS"],
-    category: "product",
-    icon: ShieldCheck,
-    accent: "#0e7490",
-    status: "Live",
-    featured: true,
-  },
-  {
-    name: "Gold Rate Calculator",
-    tagline: "Live 22K & 24K gold prices across India",
-    url: "https://gold.flexypdf.com",
-    host: "gold.flexypdf.com",
-    description:
-      "A real-time gold price tracker for Indian cities with a full jewellery cost calculator — purity from 10K to 24K, weight in grams, tola or troy ounces, wastage, making charges and GST, all computed instantly in the browser.",
-    tags: ["Live Rates", "Calculator", "India", "Utility"],
-    category: "product",
-    icon: Coins,
-    accent: "#b45309",
-    status: "Live",
-  },
-  {
-    name: "Nexbyte",
-    tagline: "My software studio — web, SaaS & APIs end-to-end",
-    url: "https://company.flexypdf.com",
-    host: "company.flexypdf.com",
-    description:
-      "The studio behind all of this work. Nexbyte offers full-stack development, SaaS builds, API and database engineering, cloud deployment and consulting — every project engineered end-to-end by one senior developer.",
-    tags: [".NET Core", "Next.js", "Azure", "Consulting"],
-    category: "product",
-    icon: Code2,
-    accent: "#7c3aed",
-    status: "Live",
-  },
 
   // ---------- Platforms & dashboards ----------
-  {
-    name: "DropShip",
-    tagline: "B2B marketplace connecting suppliers & dropshippers",
-    url: "https://dropship.flexypdf.com",
-    host: "dropship.flexypdf.com",
-    description:
-      "A three-sided B2B platform where suppliers list wholesale inventory, dropshippers import products into branded storefronts, and admins handle verification and disputes — with automated order, margin and payment tracking.",
-    tags: ["Marketplace", "Multi-role", "E-commerce", "B2B"],
-    category: "platform",
-    icon: Package,
-    accent: "#be185d",
-    status: "In Development",
-  },
   {
     name: "Leadpin",
     tagline: "Local business leads from Google Places",
@@ -140,7 +68,7 @@ export const projects: Project[] = [
     category: "platform",
     icon: MapPin,
     accent: "#0369a1",
-    status: "Private Beta",
+    status: "Live",
   },
   {
     name: "Recruitment Suite",
@@ -154,6 +82,7 @@ export const projects: Project[] = [
     icon: Users,
     accent: "#1d4ed8",
     status: "Live",
+    featured: true,
   },
   {
     name: "Upward",
@@ -167,6 +96,7 @@ export const projects: Project[] = [
     icon: Rocket,
     accent: "#be123c",
     status: "Live",
+    featured: true,
   },
 
   // ---------- Client websites ----------
@@ -197,19 +127,6 @@ export const projects: Project[] = [
     status: "Live",
   },
   {
-    name: "Nassif Electric",
-    tagline: "Licensed electrical contractor — South Florida",
-    url: "https://wallynassif.flexypdf.com",
-    host: "wallynassif.flexypdf.com",
-    description:
-      "Business website for a Florida statewide-licensed electrical contractor operating since 1976 — residential, commercial and industrial services, project portfolio, and an online service-request pipeline.",
-    tags: ["Contractor", "Lead Capture", "Website Build"],
-    category: "client",
-    icon: Zap,
-    accent: "#c2410c",
-    status: "Live",
-  },
-  {
     name: "Nassif 50th Anniversary",
     tagline: "Celebrating 50 years · 1976–2026",
     url: "https://anniversary.flexypdf.com",
@@ -234,3 +151,15 @@ export const projectStats = {
   platforms: projects.filter((p) => p.category === "platform").length,
   clients: projects.filter((p) => p.category === "client").length,
 };
+
+// "FlexyPdf, Recruitment Suite and Upward"
+function joinNames(names: string[]): string {
+  if (names.length <= 1) return names.join("");
+  return `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
+}
+
+// Prose helpers so no section hardcodes a count or a project name — both
+// follow the data above.
+export const projectCountLabel = `${projects.length}+`;
+export const flagshipNames = joinNames(featuredProjects.map((p) => p.name));
+

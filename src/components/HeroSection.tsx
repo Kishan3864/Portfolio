@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import { useRef } from "react";
 import { ArrowRight, ArrowDown, Sparkles } from "lucide-react";
+import { flagshipNames } from "@/lib/projects";
 
 const tools = ["C#", ".NET Core", "Next.js", "SQL Server", "Azure", "Docker"];
 
@@ -97,7 +98,8 @@ export default function HeroSection() {
               className="mt-5 text-[17px] leading-relaxed text-[#57534e] max-w-xl mx-auto lg:mx-0"
             >
               I build enterprise software by day and my own products by night —
-              FlexyPdf, MunafaLab and ScriptProof among them. From first idea
+              {flagshipNames} among them. From first idea
+
               to a deployed, scaling product — end to end.
             </motion.p>
 

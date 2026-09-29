@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
-  const [enabled, setEnabled] = useState(false);
+  // Rendered client-only (dynamic import with ssr: false), so the media
+  // queries can be read during the first render instead of via an effect.
+  const [enabled] = useState(
+    () =>
+      !window.matchMedia("(pointer: coarse)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
 
   // Motion values update WITHOUT triggering React re-renders.
   const x = useMotionValue(-100);
@@ -14,13 +20,7 @@ export default function CustomCursor() {
   const ringY = useSpring(y, { damping: 20, stiffness: 200, mass: 0.5 });
 
   useEffect(() => {
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (isTouch || reduceMotion) return;
-
-    setEnabled(true);
+    if (!enabled) return;
 
     const move = (e: MouseEvent) => {
       x.set(e.clientX);
@@ -28,7 +28,8 @@ export default function CustomCursor() {
     };
     window.addEventListener("mousemove", move, { passive: true });
     return () => window.removeEventListener("mousemove", move);
-  }, [x, y]);
+  }, [enabled, x, y]);
+
 
   if (!enabled) return null;
 

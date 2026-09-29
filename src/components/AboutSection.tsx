@@ -11,7 +11,7 @@ import {
   Server,
   Rocket,
 } from "lucide-react";
-import { projectStats } from "@/lib/projects";
+import { projectStats, flagshipNames } from "@/lib/projects";
 
 const highlights = [
   {
@@ -23,7 +23,7 @@ const highlights = [
   {
     icon: <Rocket size={20} />,
     title: "Product Builder",
-    desc: `Creator of ${projectStats.total}+ live products — FlexyPdf, MunafaLab, ScriptProof and a whole suite of platforms`,
+    desc: `Creator of ${projectStats.total}+ live products and platforms — ${flagshipNames} among them`,
     color: "#0e7466",
   },
   {
@@ -116,9 +116,9 @@ export default function AboutSection() {
               <span className="font-semibold text-[#1c1917]">
                 {projectStats.total}+ live products
               </span>{" "}
-              — from FlexyPdf and MunafaLab to ScriptProof, B2B marketplaces,
-              analytics dashboards and client websites — all running on
-              infrastructure I manage myself.
+              — from FlexyPdf to multi-role platforms, dashboards and client
+              websites — all running on infrastructure I manage myself.
+
             </p>
           </motion.div>
 

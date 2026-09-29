@@ -14,12 +14,4 @@ export const profile = {
   github: "https://github.com/Kishan3864",
   linkedin: "https://www.linkedin.com/in/kishanwebdeveloper",
 
-  // Flagship live, public products built and maintained by Kishan.
-  // The full catalogue lives in src/lib/projects.ts.
-  products: [
-    { name: "FlexyPdf", url: "https://flexypdf.com" },
-    { name: "MunafaLab", url: "https://munafalab.com" },
-    { name: "ScriptProof", url: "https://pci.flexypdf.com" },
-    { name: "Nexbyte", url: "https://company.flexypdf.com" },
-  ],
 } as const;

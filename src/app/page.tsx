@@ -11,6 +11,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import SectionMarquee from "@/components/SectionMarquee";
+import { projectCountLabel } from "@/lib/projects";
 
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), {
   ssr: false,
@@ -32,7 +33,8 @@ export default function Home() {
         <SectionMarquee
           items={[
             "Ideas to shipped products",
-            "13+ live deployments",
+            `${projectCountLabel} live deployments`,
+
             ".NET & Next.js",
             "Design · Build · Deploy",
           ]}
