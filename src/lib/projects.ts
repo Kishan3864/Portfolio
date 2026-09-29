@@ -7,6 +7,8 @@ import {
   Sparkles,
   Utensils,
   Heart,
+  ShoppingCart,
+  CalendarCheck,
 } from "lucide-react";
 
 // Every live deployment on the Hostinger VPS, verified against its real URL.
@@ -56,6 +58,20 @@ export const projects: Project[] = [
     featured: true,
   },
 
+  {
+    name: "WeekendCart",
+    tagline: "Home appliances, kitchen & home essentials online",
+    url: "https://weekendcart.com",
+    host: "weekendcart.com",
+    description:
+      "A full e-commerce store for home appliances, kitchen and home essentials — product catalogue, cart and checkout with UPI, PayU and cash on delivery, order tracking, returns and refunds, invoices and an admin console running the whole operation.",
+    tags: ["E-commerce", "Payments", "Admin Console"],
+    category: "product",
+    icon: ShoppingCart,
+    accent: "#0e7466",
+    status: "Live",
+  },
+
   // ---------- Platforms & dashboards ----------
   {
     name: "Leadpin",
@@ -99,7 +115,22 @@ export const projects: Project[] = [
     featured: true,
   },
 
+  {
+    name: "EventErp",
+    tagline: "Quotations, invoices & operations for event planners",
+    url: "https://event.flexypdf.com",
+    host: "event.flexypdf.com",
+    description:
+      "An event-management ERP built for a working planning studio — client quotations, invoices and end-to-end event management in one place. It is the custom back-office behind the Empire Event studio's day-to-day operations.",
+    tags: ["ERP", "Invoicing", "Operations"],
+    category: "platform",
+    icon: CalendarCheck,
+    accent: "#7c3aed",
+    status: "Live",
+  },
+
   // ---------- Client websites ----------
+
   {
     name: "Empire Event",
     tagline: "Wedding & event planners — Surat, Gujarat",
