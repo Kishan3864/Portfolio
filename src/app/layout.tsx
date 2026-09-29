@@ -22,7 +22,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "Kishan Patel | .NET Developer & Product Builder",
   description:
-    "Portfolio of Kishan Patel — 6+ years experienced .NET Developer and Full Stack Engineer. Builder of 15+ live products & platforms including FlexyPdf, MunafaLab and ScriptProof. Available for freelancing.",
+    "Portfolio of Kishan Patel — 6+ years experienced .NET Developer and Full Stack Engineer. Builder of 13+ live products & platforms including FlexyPdf, MunafaLab and ScriptProof. Available for freelancing.",
   keywords: [
     "Kishan Patel",
     ".NET Developer",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kishan Patel | .NET Developer & Product Builder",
     description:
-      "6+ years experienced .NET Developer and Full Stack Engineer. Builder of 15+ live products & platforms including FlexyPdf, MunafaLab and ScriptProof.",
+      "6+ years experienced .NET Developer and Full Stack Engineer. Builder of 13+ live products & platforms including FlexyPdf, MunafaLab and ScriptProof.",
     siteName: "Kishan Patel — Portfolio",
     locale: "en_US",
     type: "website",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Kishan Patel | .NET Developer & Product Builder",
     description:
-      "6+ years experienced .NET Developer and Full Stack Engineer. Builder of 15+ live products & platforms including FlexyPdf, MunafaLab and ScriptProof.",
+      "6+ years experienced .NET Developer and Full Stack Engineer. Builder of 13+ live products & platforms including FlexyPdf, MunafaLab and ScriptProof.",
   },
 };
 

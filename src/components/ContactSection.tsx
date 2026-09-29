@@ -233,7 +233,7 @@ export default function ContactSection() {
               <p className="text-[#57534e] leading-relaxed">
                 Whether you need a full-stack web application, an API system, a
                 SaaS product, or consulting on your .NET project — I&apos;m here
-                to help. With 6+ years of experience and 15+ live products of my
+                to help. With 6+ years of experience and 13+ live products of my
                 own, I bring both technical depth and real product-shipping
                 experience to every engagement.
               </p>

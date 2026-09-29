@@ -32,7 +32,7 @@ export default function Home() {
         <SectionMarquee
           items={[
             "Ideas to shipped products",
-            "15+ live deployments",
+            "13+ live deployments",
             ".NET & Next.js",
             "Design · Build · Deploy",
           ]}

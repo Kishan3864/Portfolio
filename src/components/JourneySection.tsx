@@ -61,7 +61,7 @@ const timelineData = [
     year: "Product Era",
     title: "Building My Own Product Suite",
     description:
-      "Launched FlexyPdf (140+ browser tools), MunafaLab (finance education), ScriptProof (PCI compliance monitoring), plus marketplaces, dashboards and calculators — 15+ live deployments running on my own VPS infrastructure.",
+      "Launched FlexyPdf (140+ browser tools), MunafaLab (finance education), ScriptProof (PCI compliance monitoring), plus marketplaces, dashboards and calculators — 13+ live deployments running on my own VPS infrastructure.",
     icon: <Rocket size={20} />,
     color: "#be185d",
     side: "right" as const,
